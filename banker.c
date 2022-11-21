@@ -3,9 +3,48 @@
 // 11/16/22
 
 #include <stdio.h>
-#include "banker.h"
  
 int main() {
+    // 2D matrix to hold allocation values
+    int allocation[5][3];
+    // 2D matrix to hold maximum values
+    int maximum[5][3];
+    // array to hold avaliable values
+    int avaliable[3];
+
+    // File I/O for given data
+    FILE *fp = fopen("input.txt", "r");
+
+    char ch = ' ';
+    int val = 0;
+    // reading data for allocation matrix
+    for(int i = 0; i < 5; i++) {
+        for(int j = 0; j < 3; j++) {
+            ch = getc(fp);
+            val = ch - '0';
+            allocation[i][j] = val;
+        }
+    }
+
+    // reading data for maximum matrix
+    for(int i = 0; i < 5; i++) {
+        for(int j = 0; j < 3; j++) {
+            ch = getc(fp);
+            val = ch - '0';
+            maximum[i][j] = val;
+        }
+    }
+
+    // reading data for avaliable array
+    for(int i = 0; i < 3; i++) {
+        ch = getc(fp);
+        val = ch - '0';
+        avaliable[i] = val;
+    }
+
+    // closing file
+    fclose(fp);
+
     // the number of resources and process will never change
     // (5 processes, 3 resources A, B, and C)
     int numResources = 3;
@@ -78,7 +117,6 @@ int main() {
         }
     }
     printf(">\n");
- 
-}
- 
 
+    return 0;
+}
